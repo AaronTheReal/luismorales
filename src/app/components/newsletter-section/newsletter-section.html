@@ -1,0 +1,76 @@
+<section class="bg-[#d5d0c8] font-sans">
+  <!-- Barra negra superior -->
+  <div class="h-[6px] w-full bg-[#0b0b0b]"></div>
+
+  <div
+    class="mx-auto max-w-[1040px] px-[clamp(24px,6vw,72px)] pb-[clamp(48px,9vw,72px)] pt-[clamp(44px,8vw,68px)]"
+  >
+    <!-- Título -->
+    <h2
+      class="font-garamond text-[clamp(20px,2.2vw,26px)] font-semibold tracking-[0.18em] text-[#1c1c1c]"
+    >
+      NEWSLETTER
+    </h2>
+
+    @if (!submitted()) {
+      <!-- Formulario -->
+      <form
+        (ngSubmit)="onSubmit()"
+        class="mx-auto mt-[clamp(30px,5vw,44px)] max-w-[470px]"
+      >
+        <!-- Fila: nombre + apellido -->
+        <div
+          class="mb-[clamp(34px,6vw,46px)] flex flex-wrap gap-[clamp(16px,2.4vw,24px)]"
+        >
+          <input
+            name="firstName"
+            [(ngModel)]="firstName"
+            type="text"
+            placeholder="First Name"
+            aria-label="Nombre"
+            class="min-w-[160px] flex-[1_1_180px] border-0 border-b border-[#34322c] bg-transparent px-[2px] pb-2 text-[clamp(15px,1.5vw,17px)] text-[#2a2a2a] outline-none placeholder:text-[#5b574e] focus:border-[#000000]"
+          />
+          <input
+            name="lastName"
+            [(ngModel)]="lastName"
+            type="text"
+            placeholder="Last Name"
+            aria-label="Apellido"
+            class="min-w-[160px] flex-[1_1_180px] border-0 border-b border-[#34322c] bg-transparent px-[2px] pb-2 text-[clamp(15px,1.5vw,17px)] text-[#2a2a2a] outline-none placeholder:text-[#5b574e] focus:border-[#000000]"
+          />
+        </div>
+
+        <!-- Email -->
+        <input
+          name="email"
+          [(ngModel)]="email"
+          type="email"
+          required
+          placeholder="Email Address"
+          aria-label="Correo electrónico"
+          class="mb-[clamp(40px,7vw,56px)] block w-full border-0 border-b border-[#34322c] bg-transparent px-[2px] pb-2 text-[clamp(15px,1.5vw,17px)] text-[#2a2a2a] outline-none placeholder:text-[#5b574e] focus:border-[#000000]"
+        />
+
+        <!-- Botón -->
+        <div class="text-center">
+          <button
+            type="submit"
+            class="min-w-[160px] whitespace-nowrap border-[1.5px] border-[#262626] bg-transparent px-[40px] py-[20px] text-[clamp(16px,1.6vw,20px)] tracking-[0.12em] text-[#1c1c1c] transition-colors duration-300 hover:bg-[#1c1c1c] hover:text-[#d5d0c8]"
+          >
+            SIGN UP
+          </button>
+        </div>
+      </form>
+    } @else {
+      <!-- Estado de confirmación -->
+      <div class="mx-auto mt-[clamp(30px,5vw,44px)] max-w-[470px] text-center">
+        <p class="font-garamond text-[clamp(24px,3vw,34px)] font-medium text-[#1c1c1c]">
+          ¡Gracias por suscribirte!
+        </p>
+        <p class="mt-3 text-[clamp(14px,1.4vw,16px)] text-[#5b574e]">
+          Te avisaremos de nuevos lanzamientos y fechas de gira.
+        </p>
+      </div>
+    }
+  </div>
+</section>

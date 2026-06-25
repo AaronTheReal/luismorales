@@ -1,0 +1,29 @@
+<section
+  class="relative min-h-screen w-full overflow-hidden font-sans"
+  style="background: radial-gradient(ellipse 42% 34% at 62% -4%, rgba(196,200,168,0.12), transparent 60%), radial-gradient(ellipse 60% 50% at 18% 30%, rgba(120,124,110,0.06), transparent 70%), linear-gradient(180deg, #16180f 0%, #101109 52%, #1b1c15 100%);"
+>
+  <!-- Imagen de fondo (la añades tú): va detrás de todo -->
+  @if (backgroundImage) {
+    <img
+      [src]="backgroundImage"
+      alt=""
+      class="absolute inset-0 h-full w-full object-cover"
+    />
+  } @else {
+    <div
+      class="absolute bottom-3 left-3.5 text-[11px] font-medium tracking-[0.12em] text-white/30"
+    >
+      BACKGROUND IMAGE PLACEHOLDER
+    </div>
+  }
+
+  <!-- Tarjeta de vídeo ("video music") -->
+  <div
+    class="absolute left-[9%] top-1/2 flex aspect-[1.8/1] w-[clamp(260px,49%,600px)] -translate-y-1/2 items-center justify-center rounded-[clamp(20px,2.4vw,30px)] bg-[#050505]"
+  >
+    <!-- TODO: sustituye este texto por tu <video> o <iframe> -->
+    <span class="text-[clamp(13px,1.45vw,18px)] font-light tracking-[0.05em] text-[#eaeaea]">
+      video music
+    </span>
+  </div>
+</section>

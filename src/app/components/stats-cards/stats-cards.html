@@ -1,0 +1,69 @@
+<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
+  @for (stat of stats(); track stat.label) {
+    <div
+      class="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition hover:shadow-md"
+    >
+      <div class="flex items-start justify-between">
+        <div [class]="'flex h-11 w-11 items-center justify-center rounded-xl ' + stat.iconClasses">
+          <svg
+            class="h-6 w-6"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.7"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            @switch (stat.icon) {
+              @case ('revenue') {
+                <path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+              }
+              @case ('orders') {
+                <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z" />
+                <path d="M3 6h18M16 10a4 4 0 0 1-8 0" />
+              }
+              @case ('customers') {
+                <circle cx="9" cy="8" r="3.2" />
+                <path d="M3 20a6 6 0 0 1 12 0" />
+                <path d="M16 5.5a3 3 0 0 1 0 5.5M21 20a5 5 0 0 0-3.5-4.7" />
+              }
+              @case ('conversion') {
+                <path d="M22 7 13.5 15.5 9 11 2 18" />
+                <path d="M16 7h6v6" />
+              }
+            }
+          </svg>
+        </div>
+
+        <span
+          [class]="
+            stat.trendUp
+              ? 'inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2 py-1 text-xs font-semibold text-emerald-600'
+              : 'inline-flex items-center gap-1 rounded-full bg-rose-50 px-2 py-1 text-xs font-semibold text-rose-600'
+          "
+        >
+          <svg
+            class="h-3.5 w-3.5"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2.2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            @if (stat.trendUp) {
+              <path d="M7 17 17 7M9 7h8v8" />
+            } @else {
+              <path d="M7 7l10 10M17 9v8H9" />
+            }
+          </svg>
+          {{ stat.trendUp ? '+' : '' }}{{ stat.delta }} %
+        </span>
+      </div>
+
+      <p class="mt-4 text-sm font-medium text-slate-500">{{ stat.label }}</p>
+      <p class="mt-1 text-2xl font-bold tracking-tight text-slate-900">{{ stat.value }}</p>
+      <p class="mt-1 text-xs text-slate-400">vs. mes anterior</p>
+    </div>
+  }
+</div>

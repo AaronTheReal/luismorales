@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Actualiza el dominio cuando publiques el sitio
+Sitemap: https://www.luismjr.com/sitemap.xml

@@ -1,0 +1,84 @@
+<section
+  class="flex min-h-screen items-center justify-center bg-black p-[clamp(28px,5vw,56px)]"
+>
+  <div class="w-full max-w-[1080px]">
+    <!-- Título de sección -->
+    <h2
+      class="mb-[clamp(26px,4vw,46px)] font-garamond text-[clamp(18px,2vw,24px)] font-semibold tracking-[0.18em] text-[#f2f2f2]"
+    >
+      MUSIC
+    </h2>
+
+    <!-- Fila: álbum destacado + grid de singles.
+         En móvil se apila; desde md va lado a lado (52% / 45%). -->
+    <div class="flex flex-col gap-8 md:flex-row md:flex-wrap md:items-start md:gap-[3%]">
+      <!-- ===== Álbum destacado (izquierda) ===== -->
+      <div class="w-full md:flex-[0_1_52%] md:min-w-[280px]">
+        <div
+          class="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[2px] bg-[#d7d4cd]"
+        >
+          @if (featured().image) {
+            <img
+              [src]="featured().image"
+              [alt]="featured().title"
+              class="absolute inset-0 h-full w-full object-cover"
+            />
+          } @else {
+            <span
+              class="font-sans text-[clamp(10px,1.1vw,12px)] font-medium tracking-[0.18em] text-[#a7a39c]"
+            >
+              IMAGE PLACEHOLDER
+            </span>
+          }
+        </div>
+        <p
+          class="mb-[5px] mt-[clamp(14px,1.6vw,18px)] font-sans text-[clamp(10px,1vw,12px)] font-medium tracking-[0.2em] text-[#8c8c8c]"
+        >
+          {{ featured().tag }}
+        </p>
+        <p
+          class="font-garamond text-[clamp(22px,2.6vw,30px)] font-medium tracking-[0.01em] text-white"
+        >
+          {{ featured().title }}
+        </p>
+      </div>
+
+      <!-- ===== Grid de singles (derecha) ===== -->
+      <div
+        class="grid w-full grid-cols-2 gap-x-[clamp(14px,1.6vw,20px)] gap-y-[clamp(18px,2.2vw,28px)] md:flex-[1_1_45%] md:min-w-[280px]"
+      >
+        @for (single of singles(); track $index) {
+          <div>
+            <div
+              class="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-[2px] bg-[#d7d4cd]"
+            >
+              @if (single.image) {
+                <img
+                  [src]="single.image"
+                  [alt]="single.title"
+                  class="absolute inset-0 h-full w-full object-cover"
+                />
+              } @else {
+                <span
+                  class="font-sans text-[clamp(9px,0.9vw,11px)] font-medium tracking-[0.16em] text-[#a7a39c]"
+                >
+                  IMAGE PLACEHOLDER
+                </span>
+              }
+            </div>
+            <p
+              class="mb-[3px] mt-[clamp(10px,1.1vw,13px)] font-sans text-[clamp(9px,0.95vw,11px)] font-medium tracking-[0.2em] text-[#8c8c8c]"
+            >
+              {{ single.tag }}
+            </p>
+            <p
+              class="font-garamond text-[clamp(17px,2vw,23px)] font-medium tracking-[0.02em] text-white"
+            >
+              {{ single.title }}
+            </p>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>
