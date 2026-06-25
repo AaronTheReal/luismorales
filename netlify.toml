@@ -1,0 +1,11 @@
+# Configuración de despliegue en Netlify (Angular 21 + SSR).
+# El plugin @netlify/angular-runtime detecta el build de servidor y crea la
+# función SSR automáticamente; aquí solo apuntamos la carpeta estática correcta.
+
+[build]
+  command = "npm run build"
+  publish = "dist/luis-mjr/browser"
+
+[build.environment]
+  # Angular 21 necesita Node 20.19+/22.12+/24+. Fijamos 22 para builds estables.
+  NODE_VERSION = "22"
