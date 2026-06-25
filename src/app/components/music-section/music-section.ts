@@ -21,7 +21,11 @@ export interface Release {
   templateUrl: './music-section.html',
 })
 export class MusicSection {
-  readonly featured = signal<Release>({ tag: 'NEW', title: 'Aceite', image: '' });
+  readonly featured = signal<Release>({
+    tag: 'NEW',
+    title: 'Aceite',
+    image: '/images/video-section/music-section/aceite.png',
+  });
 
   readonly singles = signal<Release[]>([
     { tag: 'SINGLE', title: 'TITULO', image: '' },
