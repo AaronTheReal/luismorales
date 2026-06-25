@@ -1,43 +1,89 @@
-<header
-  class="flex flex-nowrap items-center justify-between gap-6 px-[clamp(20px,5vw,56px)] py-[22px]"
->
-  <!-- Logo -->
-  <a
-    href="#"
-    class="flex-none whitespace-nowrap font-cormorant text-[clamp(13px,1.5vw,16px)] font-semibold tracking-[0.14em] text-[#111] no-underline"
+<header class="relative bg-white">
+  <div
+    class="flex items-center justify-between gap-4 px-[clamp(20px,5vw,56px)] py-[22px]"
   >
-    LUIS MORALES JR.
-  </a>
-
-  <!-- Navegación central -->
-  <nav class="flex flex-1 items-center justify-center gap-[clamp(28px,5vw,64px)]">
-    @for (link of links(); track link) {
-      <a
-        href="#"
-        class="font-cormorant text-[clamp(12px,1.3vw,15px)] font-medium tracking-[0.18em] text-[#1a1a1a] no-underline transition-opacity duration-200 hover:opacity-50"
-      >
-        {{ link }}
-      </a>
-    }
-  </nav>
-
-  <!-- Buscador -->
-  <button
-    type="button"
-    aria-label="Buscar"
-    class="flex h-5 w-5 flex-none items-center justify-center text-[#111] transition-opacity duration-200 hover:opacity-50"
-  >
-    <svg
-      class="h-[18px] w-[18px]"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      stroke-width="1.5"
-      stroke-linecap="round"
-      stroke-linejoin="round"
+    <!-- Logo -->
+    <a
+      href="#"
+      class="flex-none whitespace-nowrap font-cormorant text-[clamp(13px,1.5vw,16px)] font-semibold tracking-[0.14em] text-[#111] no-underline"
     >
-      <circle cx="11" cy="11" r="7" />
-      <path d="m21 21-4.3-4.3" />
-    </svg>
-  </button>
+      LUIS MORALES JR.
+    </a>
+
+    <!-- Navegación central (tablet/desktop) -->
+    <nav class="hidden flex-1 items-center justify-center gap-[clamp(28px,5vw,64px)] md:flex">
+      @for (link of links(); track link) {
+        <a
+          href="#"
+          class="font-cormorant text-[clamp(12px,1.3vw,15px)] font-medium tracking-[0.18em] text-[#1a1a1a] no-underline transition-opacity duration-200 hover:opacity-50"
+        >
+          {{ link }}
+        </a>
+      }
+    </nav>
+
+    <!-- Buscador (tablet/desktop) -->
+    <button
+      type="button"
+      aria-label="Buscar"
+      class="hidden h-5 w-5 flex-none items-center justify-center text-[#111] transition-opacity duration-200 hover:opacity-50 md:flex"
+    >
+      <svg
+        class="h-[18px] w-[18px]"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <circle cx="11" cy="11" r="7" />
+        <path d="m21 21-4.3-4.3" />
+      </svg>
+    </button>
+
+    <!-- Botón hamburguesa (móvil) -->
+    <button
+      type="button"
+      (click)="toggleMenu()"
+      [attr.aria-expanded]="menuOpen()"
+      aria-controls="mobile-menu"
+      aria-label="Abrir menú"
+      class="flex h-8 w-8 flex-none items-center justify-center text-[#111] md:hidden"
+    >
+      <svg
+        class="h-6 w-6"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="1.6"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        @if (menuOpen()) {
+          <path d="M6 6l12 12M18 6 6 18" />
+        } @else {
+          <path d="M4 7h16M4 12h16M4 17h16" />
+        }
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menú móvil desplegable -->
+  @if (menuOpen()) {
+    <nav
+      id="mobile-menu"
+      class="border-t border-black/5 px-[clamp(20px,5vw,56px)] pb-3 md:hidden"
+    >
+      @for (link of links(); track link) {
+        <a
+          href="#"
+          (click)="closeMenu()"
+          class="block border-b border-black/5 py-3.5 font-cormorant text-sm font-medium tracking-[0.2em] text-[#1a1a1a] no-underline"
+        >
+          {{ link }}
+        </a>
+      }
+    </nav>
+  }
 </header>
